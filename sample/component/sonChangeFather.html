@@ -2,9 +2,9 @@
  * @Author: coco
  * @Date: 2022-09-16 14:26:07
  * @LastEditors: coco
- * @LastEditTime: 2022-09-19 11:56:22
- * @FilePath: \mygithub-vue-learning\coco_first_repository\sample\component\fatherandson.html
- * @Description: 演示父子组件互相传递参数，大号所创建
+ * @LastEditTime: 2022-09-19 15:53:29
+ * @FilePath: \mygithub-vue-learning\coco_first_repository\sample\component\sonChangeFather.html
+ * @Description: 演示儿子组件动态修改父亲组件data的值  v-bind props methods this.$emit()
 -->
 <!DOCTYPE html>
 <html>
@@ -12,19 +12,24 @@
 <head>
     <meta charset="utf-8">
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-    <title>2D_3D_Enginge_Father_Son_Template_Communication</title>
+    <title>sonchangefather</title>
 </head>
 
 <body>
     <div id="appfather">
-        <h1>{{message}}</h1>
-        <appson :buttonlabellist="items" @customevent1="fathermethods1"></appson>
-        <appson></appson>
-        <appson></appson>
+        <span>{{fatherMessageA}} + {{fatherMessageB}}</span>
+        <br />
+        <appson v-bind:sonmessageprop="fatherMessageA" @customevent="fathermethods1"></appson>
+        <!--    <appson :buttonlabellist="items" @customevent1="fathermethods1"></appson>
+       
+        <appson></appson> -->
     </div>
     <template id="appsontemplate">
         <div>
-            <button v-for="item in buttonlabellist" @click="btnclick($event)">{{item}}</button>
+            <p>子组件：</p>
+            <input v-model="sonmessageprop" placeholder="edit me" @input="sonclick($event)">
+            <p>Message is: {{ sonmessageprop }}</p>
+            <!--   <button v-for="item in buttonlabellist" @click="btnclick($event)">{{item}}</button> -->
         </div>
     </template>
 </body>
@@ -33,7 +38,7 @@
         template: '#appsontemplate',
         data() {
             return {
-                'testA': '默认文字',
+                'message': '默认文字',
             }
         },
         props: {
@@ -43,24 +48,31 @@
                 default: function () {
                     return ['内部默认的量算分析', '内部默认的贴地分析', '内部默认的空间分析']
                 }
+            },
+            'sonmessageprop': {
+                type: String,
+                required: true
             }
         },
-        methods:{
-            btnclick(event){
-               console.log(event.target.innerHTML);
-               this.$emit('customevent','执行空间分析！');
+        methods: {
+            btnclick(event) {
+                console.log(event.target.innerHTML);
+                this.$emit('customevent', '执行空间分析！');
+            },
+            sonclick(e){
+                this.$emit('customevent',e.target.value)
             }
         }
     });
     const app = new Vue({
         el: '#appfather',
         data: {
-            'message': '父组件标题',
-            'items': ['量算分析', '贴地分析', '空间分析']
+            'fatherMessageA': '父亲的信息A',
+            'fatherMessageB': '父亲的信息B'
         },
-        methods:{
-            fathermethods1(){
-                alert('分析执行')
+        methods: {
+            fathermethods1(e) {
+                this.fatherMessageA=e;
             }
         }
     });
