@@ -1,0 +1,96 @@
+<!--
+ * @Author: coco
+ * @Date: 2022-09-16 14:26:07
+ * @LastEditors: coco
+ * @LastEditTime: 2022-09-19 16:33:50
+ * @FilePath: \mygithub-vue-learning\coco_first_repository\sample\component\plot.html
+ * @Description: 演示插槽的相关用法
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <title>sonchangefather</title>
+</head>
+
+<body>
+    <div id="appfather">
+        <span>{{fatherMessageA}} + {{fatherMessageB}}</span>
+        <button @click="showchildren">Father</button>
+        <br />
+        <!--   <appson ref="appson" v-bind:sonmessageprop="fatherMessageA" @customevent="fathermethods1">
+            <p>擦嘛</p>
+        </appson>
+        <appson>
+            <ul><li>123</li><li>456</li></ul>
+        </appson>
+ -->
+        <appson>
+            <span slot="Aslot">尼玛</span>
+            <p slot="Bslot">啊是大娃娃好哇</p>
+        </appson>
+
+
+    </div>
+    <template id="appsontemplate">
+        <div>
+            <p>子组件：</p>
+            <input v-model="sonmessageprop" placeholder="edit me" @input="sonclick($event)">
+            <p>Message is: {{ sonmessageprop }}</p>
+            <slot name="Aslot"></slot>
+            <slot name="Bslot"></slot>
+            <!--   <button v-for="item in buttonlabellist" @click="btnclick($event)">{{item}}</button> -->
+        </div>
+    </template>
+</body>
+<script>
+    Vue.component('appson', {
+        template: '#appsontemplate',
+        data() {
+            return {
+                'message': '默认文字',
+            }
+        },
+        props: {
+            'buttonlabellist': {
+                type: Array,
+                required: true,
+                default: function () {
+                    return ['内部默认的量算分析', '内部默认的贴地分析', '内部默认的空间分析']
+                }
+            },
+            'sonmessageprop': {
+                type: String,
+                required: true
+            }
+        },
+        methods: {
+            btnclick(event) {
+
+            },
+            sonclick(e) {
+                console.log(this.$parent);
+                this.$emit('customevent', e.target.value)
+            }
+        }
+    });
+    const app = new Vue({
+        el: '#appfather',
+        data: {
+            'fatherMessageA': '父亲的信息A',
+            'fatherMessageB': '父亲的信息B'
+        },
+        methods: {
+            fathermethods1(e) {
+
+            },
+            showchildren() {
+
+            }
+        }
+    });
+</script>
+
+</html>
