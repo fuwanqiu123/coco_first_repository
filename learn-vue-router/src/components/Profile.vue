@@ -2,24 +2,28 @@
  * @Author: coco
  * @Date: 2022-09-20 16:09:36
  * @LastEditors: coco
- * @LastEditTime: 2022-09-21 11:07:36
- * @FilePath: \mygithub-vue-learning\coco_first_repository\learn-vue-router\src\components\HelloWorldSmall.vue
+ * @LastEditTime: 2022-09-21 09:10:03
+ * @FilePath: \mygithub-vue-learning\coco_first_repository\learn-vue-router\src\components\profile.vue
  * @Description:
 -->
 <template>
   <div>
-    <h1>{{msg}}</h1>
-    <h2>{{$store.state.counter}}</h2>
-
+    <h5>{{msg}}</h5>
+    <h5>{{thisid}}</h5>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Profile',
   data () {
     return {
-      msg: '我是小的HelloWorld'
+      msg: 'profile'
+    }
+  },
+  computed:{
+    thisid(){
+      return this.$route.params.id
     }
   }
 }

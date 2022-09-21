@@ -2,24 +2,26 @@
  * @Author: coco
  * @Date: 2022-09-20 16:09:36
  * @LastEditors: coco
- * @LastEditTime: 2022-09-21 11:07:36
- * @FilePath: \mygithub-vue-learning\coco_first_repository\learn-vue-router\src\components\HelloWorldSmall.vue
+ * @LastEditTime: 2022-09-21 08:39:59
+ * @FilePath: \mygithub-vue-learning\coco_first_repository\learn-vue-router\src\components\HelloWorldChildren1.vue
  * @Description:
 -->
 <template>
   <div>
-    <h1>{{msg}}</h1>
-    <h2>{{$store.state.counter}}</h2>
-
+    <ul>
+    <li>
+      {{msg}} 
+      </li>
+      </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'HelloWorldChildren1',
   data () {
     return {
-      msg: '我是小的HelloWorld'
+      msg: 'HelloWorldChildren1'
     }
   }
 }
@@ -27,7 +29,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1{
+ul li{
   color: #42b983;
 }
 </style>
