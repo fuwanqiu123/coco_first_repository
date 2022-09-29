@@ -14,18 +14,28 @@ import About from '../components/testRouter/About'
 
 Vue.use(Router)
 
-const routes=[
+const routes = [
   {
-    path:'/home',
-    component:Home
+    /*
+    默认路由的配置
+    */
+    path: '/',
+    redirect: '/home',
+  }
+  , {
+    path: '/about',
+    component: About
   },
   {
-    path:'/about',
-    component:Home
+    path: '/home',
+    component: Home
   }
 ];
 
-export default new Router({routes})
+export default new Router({
+  routes,
+  mode: 'history'   // H5 history模式 去除路径中的 # 号
+})
 
 
 

@@ -4,31 +4,51 @@
  * @LastEditors: coco
  * @LastEditTime: 2022-09-21 10:36:28
  * @FilePath: \mygithub-vue-learning\coco_first_repository\learn-vue-router\src\App.vue
- * @Description: 
+ * @Description: 路由演示
 -->
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <!-- <button>Home</button>
-    <button>About</button>
-    <button>My</button> -->
 
-    <router-link to="/home">Home</router-link>
-    <router-link to="/bout">About</router-link>
-    <router-link to="/my">My</router-link>
-    <router-view></router-view>
+    <!--路由演示-->
+    <div>
+      <h4>演示路由</h4>
+      <!--默认会被渲染成 a 标签-->
+      <!--replace为什么不生效-->
+      <router-link replace to="/home" active-class="fwqselect">Home</router-link>
+      <router-link replace to="/about" active-class="fwqselect">About</router-link>
+      <router-link replace to="/my" active-class="fwqselect">My</router-link>
+      <!--将其渲染成 button 标签-->
+      <router-link to="/fwq" tag="button">FWQ</router-link>
+      <router-link to="/zs" tag="button">ZS</router-link>
+      <router-link to="/gh" tag="button">GH</router-link>
+      <router-link to="/xh" tag="button">XH</router-link>
+      <button @click="handclickhome">手动-Home</button>
+      <button @click="handclickabout">手动-About</button>
+      <router-view></router-view>
+    </div>
+
+
   </div>
 </template>
 <script>
 
 export default {
-    name: "App",
-    data() {
-        return {
-            tn: "big"
-        };
+  name: "App",
+  data() {
+    return {
+      tn: "big"
+    };
+  },
+  components: {},
+  methods: {
+    handclickhome() {
+      this.$router.push('/home');//this.$router.replace('/home');   但是 replace 为什么不生效
     },
-    components: {  }
+    handclickabout() {
+      this.$router.push('/about');
+    }
+  }
 }
 </script>
 
@@ -40,5 +60,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+/**默认路由生效时的css样式 */
+.router-link-active {
+  color: red;
+}
+
+/**自定义路由生效时的css样式 */
+.fwqselect {
+  color: blue
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
-<h1>我是Home组件</h1>
+    <h5>路由展示区域：我是Home组件</h5>
 </template>
 
 <script>
-   export default {
+export default {
     name: "Home",
     data() {
         return {
-           
+
         };
     }
 }
