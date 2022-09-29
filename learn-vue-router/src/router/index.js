@@ -8,21 +8,40 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-/* import HelloWorld from '@/components/HelloWorld'
-import HelloWorldSmall from '@/components/HelloWorldSmall'
- */
-/* const HelloWorld=()=> import('@/components/HelloWorld')
-const HelloWorldSmall=()=> import('@/components/HelloWorldSmall') */
+import Home from '../components/testRouter/Home'
+import About from '../components/testRouter/About'
 
-const HelloWorld=()=> import('@/components/HelloWorld')
-const HelloWorldSmall=()=> import('@/components/HelloWorldSmall') 
-const HelloWorldChildren1= ()=> import('../components/HelloWorldChildren1')
-const HelloWorldChildren2= ()=> import('../components/HelloWorldChildren2')
-const Profile= ()=> import('../components/Profile')
-const Profile_New= ()=> import('../components/Profile_New')
 
 Vue.use(Router)
+
+
+const routes=[
+  {
+    path:'/home',
+    component:Home
+  },
+  {
+    path:'/about',
+    component:About
+  },
+
+];
+
 export default new Router({
+  routes
+})
+
+
+
+
+
+
+
+
+
+
+
+/* export default new Router({
   routes: [
      {
       path: '/',
@@ -66,4 +85,16 @@ export default new Router({
     }
   ],
   mode:'history'
-})
+}) */
+/* import HelloWorld from '@/components/HelloWorld'
+import HelloWorldSmall from '@/components/HelloWorldSmall'
+ */
+/* const HelloWorld=()=> import('@/components/HelloWorld')
+const HelloWorldSmall=()=> import('@/components/HelloWorldSmall') */
+
+/* const HelloWorld=()=> import('@/components/HelloWorld')
+const HelloWorldSmall=()=> import('@/components/HelloWorldSmall') 
+const HelloWorldChildren1= ()=> import('../components/HelloWorldChildren1')
+const HelloWorldChildren2= ()=> import('../components/HelloWorldChildren2')
+const Profile= ()=> import('../components/Profile')
+const Profile_New= ()=> import('../components/Profile_New') */

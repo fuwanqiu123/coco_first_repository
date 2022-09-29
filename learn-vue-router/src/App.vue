@@ -9,21 +9,31 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-link to="/small">HelloWorldSmall</router-link>
-   <router-link :to="'/'+tn">HelloWorld1</router-link>
-   <router-link to="/profile/13597869259">profile</router-link>
-   <router-link v-bind:to="{path:'/profile_new',query:{name:'fwq'}}">profile_new</router-link>
-      <router-view></router-view>
+    <!-- <button>Home</button>
+    <button>About</button>
+    <button>My</button> -->
+
+    <router-link to="/home">Home</router-link>
+    <router-link to="/bout">About</router-link>
+    <router-link to="/my">My</router-link>
+    <router-view></router-view>
+
+
+
   </div>
 </template>
 <script>
+
+/* import Home from './components/testRouter/Home.vue'; */
+
 export default {
-  name: 'App',
-  data(){
-    return {
-      tn:'big'
-    }
-  }
+    name: "App",
+    data() {
+        return {
+            tn: "big"
+        };
+    },
+    components: {  }
 }
 </script>
 
