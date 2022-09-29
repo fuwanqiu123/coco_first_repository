@@ -17,14 +17,9 @@
     <router-link to="/bout">About</router-link>
     <router-link to="/my">My</router-link>
     <router-view></router-view>
-
-
-
   </div>
 </template>
 <script>
-
-/* import Home from './components/testRouter/Home.vue'; */
 
 export default {
     name: "App",

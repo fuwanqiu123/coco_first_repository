@@ -14,7 +14,6 @@ import About from '../components/testRouter/About'
 
 Vue.use(Router)
 
-
 const routes=[
   {
     path:'/home',
@@ -22,14 +21,11 @@ const routes=[
   },
   {
     path:'/about',
-    component:About
-  },
-
+    component:Home
+  }
 ];
 
-export default new Router({
-  routes
-})
+export default new Router({routes})
 
 
 
