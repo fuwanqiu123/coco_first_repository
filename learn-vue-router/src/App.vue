@@ -25,10 +25,12 @@
       <router-link to="/xh" tag="button">XH</router-link>
       <button @click="handclickhome">手动-Home</button>
       <button @click="handclickabout">手动-About</button>
-      <router-view></router-view>
+
+      <!--这里的组件不会被频繁的 create destroy-->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
-
-
   </div>
 </template>
 <script>
@@ -42,6 +44,7 @@ export default {
   },
   components: {},
   methods: {
+    /*用代码进行路由跳转 */
     handclickhome() {
       this.$router.push('/home');//this.$router.replace('/home');   但是 replace 为什么不生效
     },

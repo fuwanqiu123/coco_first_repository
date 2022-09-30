@@ -12,6 +12,7 @@ import Home from '../components/testRouter/Home'
 import About from '../components/testRouter/About'
 
 
+
 Vue.use(Router)
 
 const routes = [
@@ -20,22 +21,51 @@ const routes = [
     默认路由的配置
     */
     path: '/',
-    redirect: '/home',
+    redirect: '/home'
   }
   , {
     path: '/about',
     component: About
   },
+  /*有俩嵌套子路由*/
   {
     path: '/home',
-    component: Home
+    component: Home,
+    //给路由添加属性以用来在全局导航守卫时
+    meta: {
+      title: '我是Home页面'
+    },
+    children: [
+      {
+        path: 'home_view1',
+        component: () => import('../components/testRouter/Home_View1')
+      },
+      {
+        path: 'home_view2',
+        component: () => import('../components/testRouter/Home_View2')
+      },
+    ]
+  },
+  /*动态路由的配置方式， 用 ：  的 方式  动态路由的意思路由后面的参数是不固定的，可能是用户的输入*/
+  {
+    path: '/my/:username',
+    component: () => import('../components/testRouter/My')   //用懒加载方式加载路由 
   }
 ];
 
-export default new Router({
+const router = new Router({
   routes,
   mode: 'history'   // H5 history模式 去除路径中的 # 号
+});
+
+/* 全局路由导航守卫 */
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  document.title = to.matched[0].meta.title;  //取出路由的属性
+  next(); //前置钩子函数必须手动执行 后置钩子不需要
 })
+
+export default router
 
 
 
